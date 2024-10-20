@@ -27,15 +27,31 @@ const addNewProduct = async (req, res) => {
 
 const getAllProducts = async (req, res) => {
   try {
-    const { limit = 5, page = 1 } = req.query;
-    const skip = (+page - 1) * +limit;
+    const {
+      limit = 5,
+      page = 1,
+      category = "",
+      search = "",
+      sort = "id",
+    } = req.query;
 
-    const Products = await prisma.products.findMany({
-      take: +limit,
-      skip: +skip,
-      orderBy: { id: "asc" },
-    });
-    const ProductsCount = await prisma.products.count();
+    const skip = (+page - 1) * +limit;
+    const whereConditions = {
+      ...(category && { category }),
+      name: { contains: search.toLowerCase(), mode: "insensitive" },
+    };
+
+    const [Products, ProductsCount] = await Promise.all([
+      prisma.products.findMany({
+        where: whereConditions,
+        take: +limit,
+        skip: +skip,
+        orderBy: sort == "name" ? { name: "asc" } : { price: "asc" },
+      }),
+      prisma.products.count({
+        where: whereConditions,
+      }),
+    ]);
 
     if (Products.length) {
       res.json({
@@ -45,11 +61,14 @@ const getAllProducts = async (req, res) => {
     } else {
       res.status(404).json({
         status: "fail",
-        message: "no Products found",
+        message: "No products found",
       });
     }
-  } catch {
-    res.status(500).json({ status: "error", message: "Something Went Wrong" });
+  } catch (err) {
+    res.status(500).json({
+      status: "error",
+      message: "Something went wrong: " + err.message,
+    });
   }
 };
 
@@ -65,7 +84,7 @@ const getProductById = async (req, res) => {
     });
     const avgRating = (
       await prisma.review.aggregate({ _avg: { rating: true } })
-    )._avg.rating;
+    )._avg.rating.toFixed(1);
 
     if (!Product) {
       res.status(404).json({
@@ -78,7 +97,7 @@ const getProductById = async (req, res) => {
   } catch (err) {
     res
       .status(500)
-      .json({ status: "error", message: "incorrect Id Format " + err });
+      .json({ status: "error", message: "an error happened " + err });
   }
 };
 
@@ -108,6 +127,29 @@ const getProductByCategory = async (req, res) => {
     }
   } catch (err) {
     res.status(500).json({ status: "error", message: "An error happened" });
+  }
+};
+
+const getProductsCategories = async (req, res) => {
+  try {
+    const categories = await prisma.products.findMany({
+      select: { category: true },
+    });
+    if (!categories.length) {
+      return res.status(404).json({
+        status: "fail",
+        message: "No categories found",
+      });
+    }
+
+    const uniqueCategories = [
+      ...new Set(categories.map((item) => item.category)),
+    ];
+    res.json({ status: "success", data: uniqueCategories });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ status: "error", message: "An error happened" + err });
   }
 };
 
@@ -206,4 +248,5 @@ module.exports = {
   deleteProductById,
   updateProductById,
   insertReview,
+  getProductsCategories,
 };

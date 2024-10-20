@@ -15,7 +15,7 @@ model Products {
   description String?   @db.VarChar(1023)
   price       Int
   category    String    @db.VarChar(1023)
-  image       String    @db.VarChar(255)
+  images      String[]  @db.VarChar(255)
   reviews     Review[]  @relation("ProductReviews")
 }
 

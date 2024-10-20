@@ -1,0 +1,155 @@
+.porductOverview {
+  display: flex;
+  flex-direction: column;
+  margin: 7vh auto;
+  width: 80%;
+}
+
+.currDirectory {
+  display: flex;
+  align-items: center;
+  margin: 5vh 0;
+  padding: 10px;
+  gap: 10px;
+  p {
+    margin: 0;
+  }
+}
+
+.productEssintials {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 65vh;
+}
+
+/* Product Images Styles */
+.productImages {
+  display: flex;
+  align-items: center;
+  flex: 3;
+  width: 100%;
+  height: 100%;
+}
+
+.productImages aside {
+  flex: 1;
+  height: 100%;
+  overflow-y: scroll;
+}
+.productImages aside::-webkit-scrollbar {
+  display: none;
+}
+
+.productImages aside img {
+  max-height: 10%;
+  max-width: 6vw;
+}
+
+.productImages aside button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 10px;
+  margin: 5px 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.productImages aside button:hover {
+  transform: translateX(5px) scale(1.05);
+}
+
+.productImages .mainImageContainer {
+  flex: 3;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.productImages .mainImageContainer img {
+  max-height: 100%;
+}
+
+/* Product Info Styles */
+.productInfo {
+  flex: 2;
+  display: flex;
+  gap: 10vh;
+  justify-content: center;
+  flex-direction: column;
+  font-family: "Poppins";
+  color: #333;
+}
+
+.productInfo .productName {
+  font-weight: 400;
+}
+
+.productInfo .price {
+  font-weight: 500;
+  margin: 1vh 0 3vh 0;
+}
+
+.productInfo .description {
+  font-weight: 400;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Number of Items Styles */
+.numberOfItems {
+  display: flex;
+  flex-direction: column;
+  margin: 2vh auto;
+  gap: 2vh;
+}
+
+.numberOfItems .quantity {
+  display: inline-flex;
+  align-items: center;
+}
+
+.numberOfItems .quantity button {
+  font-family: "Poppins";
+  cursor: pointer;
+  font-weight: 400;
+  background-color: transparent;
+  color: black;
+  border: none;
+  outline: none;
+}
+
+.numberOfItems .quantity .op {
+  border: 1px solid #eee;
+  padding: 10px 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.numberOfItems .quantity .op:hover {
+  background-color: #717fe0;
+  color: white;
+}
+
+.numberOfItems .quantity .qun {
+  border-block: 1px solid #eee;
+  background-color: #f7f7f7;
+  padding: 10px 20px;
+  transition: all 0.2s ease-in-out;
+}
+
+.numberOfItems .addBtn {
+  background-color: #717fe0;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  padding: 2vh 0;
+  color: white;
+  font-weight: 700;
+  transition: all 0.3s ease-in-out;
+}
+
+.numberOfItems .addBtn:hover {
+  background-color: black;
+}
