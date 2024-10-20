@@ -14,6 +14,16 @@ router
   .get(ProductsController.getAllProducts);
 
 router
+  .route("/review/:ProductId")
+  .post(ProductValidation.addReviewValidation, ProductsController.insertReview);
+
+router.route("/categories").get(ProductsController.getProductsCategories);
+
+router
+  .route("/categories/:category")
+  .get(ProductsController.getProductByCategory);
+
+router
   .route("/:ProductId")
   .get(ProductsController.getProductById)
   .patch(
@@ -21,13 +31,5 @@ router
     ProductsController.updateProductById
   )
   .delete(ProductsController.deleteProductById);
-
-router
-  .route("/review/:ProductId")
-  .post(ProductValidation.addReviewValidation, ProductsController.insertReview);
-
-router
-  .route("/byCategory/:category")
-  .get(ProductsController.getProductByCategory);
 
 module.exports = router;

@@ -2,6 +2,7 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 const { validationResult } = require("express-validator");
+const { selectFields } = require("express-validator/lib/field-selection");
 
 const addNewProduct = async (req, res) => {
   try {
@@ -78,7 +79,7 @@ const getProductById = async (req, res) => {
   } catch (err) {
     res
       .status(500)
-      .json({ status: "error", message: "incorrect Id Format " + err });
+      .json({ status: "error", message: "an error happened " + err });
   }
 };
 
@@ -108,6 +109,23 @@ const getProductByCategory = async (req, res) => {
     }
   } catch (err) {
     res.status(500).json({ status: "error", message: "An error happened" });
+  }
+};
+
+const getProductsCategories = async (req, res) => {
+  try {
+    const categories = await prisma.products.findMany({
+      select: { category: true },
+    });
+    const uniqueCategories = [
+      ...new Set(categories.map((item) => item.category)),
+    ];
+
+    res.json({ status: "success", data: uniqueCategories });
+  } catch (err) {
+    res
+      .status(500)
+      .json({ status: "error", message: "An error happened" + err });
   }
 };
 
@@ -206,4 +224,5 @@ module.exports = {
   deleteProductById,
   updateProductById,
   insertReview,
+  getProductsCategories,
 };
