@@ -44,7 +44,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 25vw;
+  min-width: 22vw;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
   overflow: hidden;
