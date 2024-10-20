@@ -2,7 +2,6 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 const { validationResult } = require("express-validator");
-const { selectFields } = require("express-validator/lib/field-selection");
 
 const addNewProduct = async (req, res) => {
   try {
@@ -117,10 +116,16 @@ const getProductsCategories = async (req, res) => {
     const categories = await prisma.products.findMany({
       select: { category: true },
     });
+    if (!categories.length) {
+      return res.status(404).json({
+        status: "fail",
+        message: "No categories found",
+      });
+    }
+
     const uniqueCategories = [
       ...new Set(categories.map((item) => item.category)),
     ];
-
     res.json({ status: "success", data: uniqueCategories });
   } catch (err) {
     res
