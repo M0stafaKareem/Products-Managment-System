@@ -79,9 +79,11 @@ export const AllProductsPage = () => {
       />
       <div className="container d-flex gap-5 flex-wrap my-5 justify-content-center">
         {productsArray.length ? (
-          productsArray.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))
+          <>
+            {productsArray.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </>
         ) : (
           <p>The Store is Currently Empty</p>
         )}

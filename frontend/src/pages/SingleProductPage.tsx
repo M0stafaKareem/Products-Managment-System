@@ -1,3 +1,4 @@
+import "./SingleProductPage.css";
 import { useEffect, useState } from "react";
 import ProductDetails from "../components/single-product-page/ProductDetails";
 import ProductReviewsSection from "../components/single-product-page/ProductReviewsSection";
