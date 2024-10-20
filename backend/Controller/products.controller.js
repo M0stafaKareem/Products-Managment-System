@@ -27,15 +27,31 @@ const addNewProduct = async (req, res) => {
 
 const getAllProducts = async (req, res) => {
   try {
-    const { limit = 5, page = 1 } = req.query;
-    const skip = (+page - 1) * +limit;
+    const {
+      limit = 5,
+      page = 1,
+      category = "",
+      search = "",
+      sort = "id",
+    } = req.query;
 
-    const Products = await prisma.products.findMany({
-      take: +limit,
-      skip: +skip,
-      orderBy: { id: "asc" },
-    });
-    const ProductsCount = await prisma.products.count();
+    const skip = (+page - 1) * +limit;
+    const whereConditions = {
+      ...(category && { category }),
+      name: { contains: search.toLowerCase(), mode: "insensitive" },
+    };
+
+    const [Products, ProductsCount] = await Promise.all([
+      prisma.products.findMany({
+        where: whereConditions,
+        take: +limit,
+        skip: +skip,
+        orderBy: sort == "name" ? { name: "asc" } : { price: "asc" },
+      }),
+      prisma.products.count({
+        where: whereConditions,
+      }),
+    ]);
 
     if (Products.length) {
       res.json({
@@ -45,11 +61,14 @@ const getAllProducts = async (req, res) => {
     } else {
       res.status(404).json({
         status: "fail",
-        message: "no Products found",
+        message: "No products found",
       });
     }
-  } catch {
-    res.status(500).json({ status: "error", message: "Something Went Wrong" });
+  } catch (err) {
+    res.status(500).json({
+      status: "error",
+      message: "Something went wrong: " + err.message,
+    });
   }
 };
 

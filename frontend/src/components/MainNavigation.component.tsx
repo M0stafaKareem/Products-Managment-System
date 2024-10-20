@@ -3,12 +3,23 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import styles from "./MainNavigation.module.css";
-import { MouseEvent, useEffect, useState } from "react";
+import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
+import { Form } from "react-bootstrap";
 
-const MainNavigation = () => {
+interface MainNavigationInterface {
+  onCategoryChange: (category: string) => void;
+  onSortingChange: (sortType: string) => void;
+  onSearching: (sortType: string) => void;
+}
+const MainNavigation: React.FC<MainNavigationInterface> = ({
+  onCategoryChange,
+  onSortingChange,
+  onSearching,
+}) => {
   const [categories, setCategories] = useState([]);
   const [currentCategory, setCurrentCategory] = useState("");
   const [currentSoring, setCurrentSorting] = useState("default");
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetch("http://127.0.0.1:3333/api/products/categories")
@@ -19,9 +30,18 @@ const MainNavigation = () => {
 
   const categoryChangeHandler = (event: MouseEvent<HTMLElement>) => {
     setCurrentCategory(event.currentTarget.textContent!);
+    setSearchTerm("");
+    onCategoryChange(event.currentTarget.textContent!);
   };
   const sortChangeHandler = (event: MouseEvent<HTMLElement>) => {
     setCurrentSorting(event.currentTarget.textContent!);
+    setSearchTerm("");
+    onSortingChange(event.currentTarget.textContent!);
+  };
+
+  const handleSearching = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+    onSearching(event.target.value);
   };
 
   return (
@@ -58,15 +78,22 @@ const MainNavigation = () => {
               <label className="fs-4">Sort By: </label>
               <NavDropdown title={currentSoring} id="basic-nav-dropdown">
                 <NavDropdown.Item onClick={sortChangeHandler}>
-                  Price
+                  price
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={sortChangeHandler}>
-                  Name
+                  name
                 </NavDropdown.Item>
               </NavDropdown>
             </div>
           </Nav>
+          <Form.Control
+            type="text"
+            placeholder="Search"
+            className="w-25"
+            value={searchTerm}
+            onChange={handleSearching}
+          />
         </Navbar.Collapse>
       </Container>
     </Navbar>
