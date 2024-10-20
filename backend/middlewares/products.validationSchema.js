@@ -60,13 +60,14 @@ const addReviewValidation = [
   body("rating")
     .notEmpty()
     .withMessage("Review rating is required")
-    .isFloat({ min: 5, max: 5 })
+    .isFloat({ min: 0, max: 5 })
     .withMessage("Review rating must be between 0 and 5"),
   body("comment")
     .optional()
     .isLength({ min: 5 })
     .withMessage("Review comment must be at least 5 characters"),
 ];
+
 module.exports = {
   addNewProductValidation,
   updateProductValidation,

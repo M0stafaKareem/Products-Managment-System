@@ -65,7 +65,7 @@ const getProductById = async (req, res) => {
     });
     const avgRating = (
       await prisma.review.aggregate({ _avg: { rating: true } })
-    )._avg.rating;
+    )._avg.rating.toFixed(1);
 
     if (!Product) {
       res.status(404).json({
