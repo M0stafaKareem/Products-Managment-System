@@ -46,7 +46,12 @@ const getAllProducts = async (req, res) => {
         where: whereConditions,
         take: +limit,
         skip: +skip,
-        orderBy: sort == "name" ? { name: "asc" } : { price: "asc" },
+        orderBy:
+          sort == "name"
+            ? { name: "asc" }
+            : sort == "price"
+            ? { price: "asc" }
+            : { id: "asc" },
       }),
       prisma.products.count({
         where: whereConditions,
