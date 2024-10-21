@@ -77,7 +77,7 @@ export const AllProductsPage = () => {
         onCategoryChange={handleCategorization}
         onSearching={handleSearching}
       />
-      <div className="container d-flex gap-5 flex-wrap my-5 justify-content-center">
+      <div className="container d-flex flex-column gap-5 flex-wrap my-5 justify-content-center">
         {productsArray.length ? (
           <>
             {productsArray.map((product) => (
@@ -89,7 +89,7 @@ export const AllProductsPage = () => {
         )}
 
         {productsArray.length > 0 && (
-          <div className="d-flex gap-4 align-items-center">
+          <div className="d-flex gap-4 align-items-center justify-content-center">
             <div className="d-flex flex-column gap-4 align-items-center">
               <Form.Select
                 id="limit"
