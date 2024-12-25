@@ -5,6 +5,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import styles from "./MainNavigation.module.css";
 import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
+import { useAuth } from "../context/AuthContext";
 
 interface MainNavigationInterface {
   onCategoryChange: (category: string) => void;
@@ -20,12 +21,21 @@ const MainNavigation: React.FC<MainNavigationInterface> = ({
   const [currentCategory, setCurrentCategory] = useState("");
   const [currentSoring, setCurrentSorting] = useState("default");
   const [searchTerm, setSearchTerm] = useState("");
+  const { idToken } = useAuth();
 
   useEffect(() => {
-    fetch("http://127.0.0.1:3333/api/products/categories")
-      .then((response) => response.json())
-      .then((jsonData) => setCategories(jsonData.data))
-      .catch((error) => console.error("Error:", error));
+    if (idToken) {
+      fetch("http://127.0.0.1:3333/api/products/categories", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${idToken}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((jsonData) => setCategories(jsonData.data))
+        .catch((error) => console.error("Error:", error));
+    }
   }, []);
 
   const categoryChangeHandler = (event: MouseEvent<HTMLElement>) => {

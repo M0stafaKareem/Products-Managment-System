@@ -1,6 +1,7 @@
 import React, { FormEvent, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./NewReviewForm.css";
+import { useAuth } from "../../context/AuthContext";
 
 const NewReviewForm = () => {
   const [rating, setRating] = useState(5);
@@ -9,6 +10,7 @@ const NewReviewForm = () => {
   const [email, setEmail] = useState("");
 
   const { id: productId } = useParams();
+  const { idToken } = useAuth();
 
   const newReviewAPI = `http://127.0.0.1:3333/api/products/review/${productId}`;
 
@@ -18,6 +20,7 @@ const NewReviewForm = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${idToken}`,
       },
       body: JSON.stringify({
         rating,

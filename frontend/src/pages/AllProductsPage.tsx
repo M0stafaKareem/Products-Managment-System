@@ -3,6 +3,7 @@ import MainNavigation from "../components/MainNavigation.component";
 import ProductCard, { Product } from "../components/ProductCard.component";
 import Pagination from "react-bootstrap/Pagination";
 import Form from "react-bootstrap/Form";
+import { useAuth } from "../context/AuthContext";
 
 export const AllProductsPage = () => {
   const [productsArray, setProductsArray] = useState<Product[]>([]);
@@ -12,24 +13,33 @@ export const AllProductsPage = () => {
   const [categorization, setCategorization] = useState<string>("");
   const [sort, setSort] = useState<string>("");
   const [search, setSearch] = useState<string>("");
+  const { idToken } = useAuth();
 
   const productsAPI = `http://127.0.0.1:3333/api/products?limit=${limit}&page=${page}&search=${search}&sort=${sort}&category=${categorization}`;
   const items: JSX.Element[] = [];
 
   useEffect(() => {
-    fetch(productsAPI)
-      .then((response) => response.json())
-      .then((jsonData) => {
-        if (jsonData.status === "success") {
-          setProductsCount(jsonData.data.ProductsCount);
-          setProductsArray(jsonData.data.Products);
-        }
-        if (jsonData.status === "fail") {
-          setProductsArray([]);
-        }
+    if (idToken) {
+      fetch(productsAPI, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${idToken}`,
+        },
       })
-      .catch((error) => console.error("Error:", error));
-  }, [productsAPI]);
+        .then((response) => response.json())
+        .then((jsonData) => {
+          if (jsonData.status === "success") {
+            setProductsCount(jsonData.data.ProductsCount);
+            setProductsArray(jsonData.data.Products);
+          }
+          if (jsonData.status === "fail") {
+            setProductsArray([]);
+          }
+        })
+        .catch((error) => console.error("Error:", error));
+    }
+  }, [productsAPI, idToken]);
 
   const handlePagination = (event: MouseEvent<HTMLElement>) => {
     setPage(+event.currentTarget.innerText);
