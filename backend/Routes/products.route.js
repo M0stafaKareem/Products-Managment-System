@@ -13,6 +13,8 @@ router
   )
   .get(ProductsController.getAllProducts);
 
+router.route("/algolia").get(ProductsController.getProductsFromAlgolia);
+
 router
   .route("/review/:ProductId")
   .post(ProductValidation.addReviewValidation, ProductsController.insertReview);

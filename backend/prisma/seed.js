@@ -4,7 +4,6 @@ const prisma = new PrismaClient();
 
 const productsData = [
   {
-    id: 5,
     name: "Classic Black Hooded Sweatshirt",
     price: 79,
     description:
@@ -19,7 +18,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 6,
     name: "Classic Comfort Fit Joggers",
     price: 25,
     description:
@@ -34,7 +32,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 7,
     name: "Classic Comfort Drawstring Joggers",
     price: 79,
     description:
@@ -48,7 +45,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 8,
     name: "Classic Red Jogger Sweatpants",
     price: 98,
     description:
@@ -63,7 +59,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 9,
     name: "Classic Navy Blue Baseball Cap",
     price: 61,
     description:
@@ -78,7 +73,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 11,
     name: "Classic Red Baseball Cap",
     price: 35,
     description:
@@ -93,7 +87,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 12,
     name: "Classic Black Baseball Cap",
     price: 58,
     description:
@@ -108,7 +101,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 13,
     name: "Classic Olive Chino Shorts",
     price: 84,
     description:
@@ -122,7 +114,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 14,
     name: "Classic High-Waisted Athletic Shorts",
     price: 43,
     description:
@@ -137,7 +128,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 15,
     name: "Classic White Crew Neck T-Shirt",
     price: 39,
     description:
@@ -152,7 +142,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 16,
     name: "Classic White Tee - Timeless Style and Comfort",
     price: 73,
     description:
@@ -167,7 +156,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 17,
     name: "Classic Black T-Shirt",
     price: 35,
     description:
@@ -182,7 +170,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 18,
     name: "Sleek White & Orange Wireless Gaming Controller",
     price: 69,
     description:
@@ -197,7 +184,6 @@ const productsData = [
     category: "Outdoors",
   },
   {
-    id: 19,
     name: "Sleek Wireless Headphone & Inked Earbud Set",
     price: 44,
     description:
@@ -212,7 +198,6 @@ const productsData = [
     category: "Outdoors",
   },
   {
-    id: 20,
     name: "Sleek Comfort-Fit Over-Ear Headphones",
     price: 28,
     description:
@@ -227,7 +212,6 @@ const productsData = [
     category: "Outdoors",
   },
   {
-    id: 21,
     name: "Efficient 2-Slice Toaster",
     price: 48,
     description:
@@ -242,7 +226,6 @@ const productsData = [
     category: "Outdoors",
   },
   {
-    id: 22,
     name: "Sleek Wireless Computer Mouse",
     price: 10,
     description:
@@ -257,7 +240,6 @@ const productsData = [
     category: "Outdoors",
   },
   {
-    id: 23,
     name: "Sleek Modern Laptop with Ambient Lighting",
     price: 43,
     description:
@@ -272,7 +254,6 @@ const productsData = [
     category: "Outdoors",
   },
   {
-    id: 24,
     name: "Sleek Modern Laptop for Professionals",
     price: 97,
     description:
@@ -287,7 +268,6 @@ const productsData = [
     category: "Outdoors",
   },
   {
-    id: 25,
     name: "Stylish Red & Silver Over-Ear Headphones",
     price: 39,
     description:
@@ -302,7 +282,6 @@ const productsData = [
     category: "Outdoors",
   },
   {
-    id: 27,
     name: "Sleek Smartwatch with Vibrant Display",
     price: 16,
     description:
@@ -317,7 +296,6 @@ const productsData = [
     category: "Outdoors",
   },
   {
-    id: 28,
     name: "Sleek Modern Leather Sofa",
     price: 53,
     description:
@@ -332,7 +310,6 @@ const productsData = [
     category: "furniture",
   },
   {
-    id: 29,
     name: "Mid-Century Modern Wooden Dining Table",
     price: 24,
     description:
@@ -347,7 +324,6 @@ const productsData = [
     category: "furniture",
   },
   {
-    id: 30,
     name: "Elegant Golden-Base Stone Top Dining Table",
     price: 66,
     description:
@@ -362,7 +338,6 @@ const productsData = [
     category: "furniture",
   },
   {
-    id: 31,
     name: "Modern Elegance Teal Armchair",
     price: 25,
     description:
@@ -377,7 +352,6 @@ const productsData = [
     category: "furniture",
   },
   {
-    id: 32,
     name: "Elegant Solid Wood Dining Table",
     price: 67,
     description:
@@ -392,7 +366,6 @@ const productsData = [
     category: "furniture",
   },
   {
-    id: 33,
     name: "Modern Minimalist Workstation Setup",
     price: 49,
     description:
@@ -407,7 +380,6 @@ const productsData = [
     category: "furniture",
   },
   {
-    id: 34,
     name: "Modern Ergonomic Office Chair",
     price: 71,
     description:
@@ -421,7 +393,6 @@ const productsData = [
     category: "furniture",
   },
   {
-    id: 35,
     name: "Futuristic Holographic Soccer Cleats",
     price: 39,
     description:
@@ -436,7 +407,6 @@ const productsData = [
     category: "Books",
   },
   {
-    id: 36,
     name: "Rainbow Glitter High Heels",
     price: 39,
     description:
@@ -451,7 +421,6 @@ const productsData = [
     category: "Books",
   },
   {
-    id: 37,
     name: "Chic Summer Denim Espadrille Sandals",
     price: 33,
     description:
@@ -466,7 +435,6 @@ const productsData = [
     category: "Books",
   },
   {
-    id: 38,
     name: "Vibrant Runners: Bold Orange & Blue Sneakers",
     price: 27,
     description:
@@ -481,7 +449,6 @@ const productsData = [
     category: "Books",
   },
   {
-    id: 39,
     name: "Vibrant Pink Classic Sneakers",
     price: 84,
     description:
@@ -496,7 +463,6 @@ const productsData = [
     category: "Books",
   },
   {
-    id: 40,
     name: "Futuristic Silver and Gold High-Top Sneaker",
     price: 68,
     description:
@@ -511,7 +477,6 @@ const productsData = [
     category: "Books",
   },
   {
-    id: 41,
     name: "Futuristic Chic High-Heel Boots",
     price: 36,
     description:
@@ -526,7 +491,6 @@ const productsData = [
     category: "Books",
   },
   {
-    id: 42,
     name: "Elegant Patent Leather Peep-Toe Pumps with Gold-Tone Heel",
     price: 53,
     description:
@@ -541,7 +505,6 @@ const productsData = [
     category: "Books",
   },
   {
-    id: 43,
     name: "Elegant Purple Leather Loafers",
     price: 17,
     description:
@@ -556,7 +519,6 @@ const productsData = [
     category: "Books",
   },
   {
-    id: 44,
     name: "Classic Blue Suede Casual Shoes",
     price: 39,
     description:
@@ -571,7 +533,6 @@ const productsData = [
     category: "Books",
   },
   {
-    id: 45,
     name: "Sleek Futuristic Electric Bicycle",
     price: 22,
     description:
@@ -586,7 +547,6 @@ const productsData = [
     category: "Garden",
   },
   {
-    id: 46,
     name: "Sleek All-Terrain Go-Kart",
     price: 37,
     description:
@@ -601,7 +561,6 @@ const productsData = [
     category: "Garden",
   },
   {
-    id: 47,
     name: "Radiant Citrus Eau de Parfum",
     price: 73,
     description:
@@ -616,7 +575,6 @@ const productsData = [
     category: "Garden",
   },
   {
-    id: 48,
     name: "Sleek Olive Green Hardshell Carry-On Luggage",
     price: 48,
     description:
@@ -631,7 +589,6 @@ const productsData = [
     category: "Garden",
   },
   {
-    id: 49,
     name: "Chic Transparent Fashion Handbag",
     price: 61,
     description:
@@ -646,7 +603,6 @@ const productsData = [
     category: "Garden",
   },
   {
-    id: 50,
     name: "Trendy Pink-Tinted Sunglasses",
     price: 38,
     description:
@@ -661,7 +617,6 @@ const productsData = [
     category: "Garden",
   },
   {
-    id: 51,
     name: "Elegant Glass Tumbler Set",
     price: 50,
     description:
@@ -676,7 +631,6 @@ const productsData = [
     category: "Garden",
   },
   {
-    id: 52,
     name: "Camisas Columbia",
     price: 200,
     description: "Camisa con proteccion solar e impermiable",
@@ -688,7 +642,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 53,
     name: "New Product",
     price: 10,
     description: "A description",
@@ -698,7 +651,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 54,
     name: "New Product Course",
     price: 9999,
     description: "A description",
@@ -708,7 +660,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 55,
     name: "212",
     price: 212,
     description: "A description",
@@ -722,7 +673,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 56,
     name: "212",
     price: 212,
     description: "A description",
@@ -732,7 +682,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 58,
     name: "New Product",
     price: 10,
     description: "A description",
@@ -742,7 +691,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 59,
     name: "Acer",
     price: 10,
     description: "A description",
@@ -752,7 +700,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 60,
     name: "New Product",
     price: 10,
     description: "A description",
@@ -762,7 +709,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 63,
     name: "New Product",
     price: 10,
     description: "A description",
@@ -772,7 +718,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 64,
     name: "Gorgeous Plastic Tuna",
     price: 35343,
     description:
@@ -787,7 +732,6 @@ const productsData = [
     category: "furniture",
   },
   {
-    id: 66,
     name: "Unbranded Fresh Ball",
     price: 32059,
     description:
@@ -802,7 +746,6 @@ const productsData = [
     category: "furniture",
   },
   {
-    id: 67,
     name: "New Product",
     price: 10,
     description: "A description",
@@ -812,7 +755,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 79,
     name: "New Product",
     price: 10,
     description: "A description",
@@ -822,7 +764,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 84,
     name: "New Product",
     price: 10,
     description: "A description",
@@ -832,7 +773,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 85,
     name: "New Product",
     price: 10,
     description: "A description",
@@ -842,7 +782,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 86,
     name: "New Product",
     price: 10,
     description: "A description",
@@ -852,7 +791,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 87,
     name: "New Product",
     price: 10,
     description: "A description",
@@ -862,7 +800,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 89,
     name: "New Product",
     price: 10,
     description: "A description",
@@ -872,7 +809,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 90,
     name: "ConfirmDialog",
     price: 11,
     description:
@@ -883,7 +819,6 @@ const productsData = [
     category: "Outdoors",
   },
   {
-    id: 91,
     name: "New Product",
     price: 10,
     description: "A description",
@@ -893,7 +828,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 92,
     name: "New Product",
     price: 10,
     description: "A description",
@@ -903,7 +837,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 93,
     name: "New Product",
     price: 10,
     description: "A description",
@@ -913,7 +846,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 94,
     name: "New Product",
     price: 10,
     description: "A description",
@@ -923,7 +855,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 95,
     name: "New Product",
     price: 10,
     description: "A description",
@@ -933,7 +864,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 96,
     name: "New Product",
     price: 10,
     description: "A description",
@@ -943,7 +873,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 97,
     name: "New Product",
     price: 10,
     description: "A description",
@@ -953,7 +882,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 98,
     name: "New Product",
     price: 10,
     description: "A description",
@@ -963,7 +891,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 99,
     name: "New Product",
     price: 10,
     description: "A description",
@@ -973,7 +900,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 100,
     name: "New Product",
     price: 10,
     description: "A description",
@@ -983,7 +909,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 101,
     name: "New Product",
     price: 10,
     description: "A description",
@@ -993,7 +918,6 @@ const productsData = [
     category: "kids",
   },
   {
-    id: 102,
     name: "New Product",
     price: 10,
     description: "A description",
@@ -1020,7 +944,6 @@ async function main() {
           comment: `This is a comment for Product ${product.id} from Reviewer ${
             index * 3 + 1
           }.`,
-          productId: product.id,
         },
         {
           reviewerName: `Reviewer ${index * 3 + 2}`,
@@ -1028,7 +951,6 @@ async function main() {
           comment: `This is a comment for Product ${product.id} from Reviewer ${
             index * 3 + 2
           }.`,
-          productId: product.id,
         },
         {
           reviewerName: `Reviewer ${index * 3 + 3}`,
@@ -1036,7 +958,6 @@ async function main() {
           comment: `This is a comment for Product ${product.id} from Reviewer ${
             index * 3 + 3
           }.`,
-          productId: product.id,
         },
       ];
 

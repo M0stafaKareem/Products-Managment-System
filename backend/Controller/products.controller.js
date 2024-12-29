@@ -1,6 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
-
+const { algoliasearch } = require("algoliasearch");
 const { validationResult } = require("express-validator");
 
 const addNewProduct = async (req, res) => {
@@ -11,8 +11,18 @@ const addNewProduct = async (req, res) => {
     }
 
     const newProduct = req.body;
+
     const response = await prisma.products.create({
       data: newProduct,
+    });
+
+    const client = algoliasearch(
+      process.env.ALGOLIA_APP_ID,
+      process.env.ALGOLIA_API_KEY
+    );
+    await client.saveObject({
+      indexName: "products",
+      body: { objectID: response.id, ...newProduct },
     });
 
     res.status(201).json({
@@ -21,7 +31,9 @@ const addNewProduct = async (req, res) => {
       message: "new Product added successfully",
     });
   } catch (err) {
-    res.status(500).json({ status: "error", message: "Something went wrong" });
+    res
+      .status(500)
+      .json({ status: "error", message: "Something went wrong", err });
   }
 };
 
@@ -62,6 +74,32 @@ const getAllProducts = async (req, res) => {
       res.json({
         status: "success",
         data: { Products, ProductsCount },
+      });
+    } else {
+      res.status(404).json({
+        status: "fail",
+        message: "No products found",
+      });
+    }
+  } catch (err) {
+    res.status(500).json({
+      status: "error",
+      message: "Something went wrong: " + err.message,
+    });
+  }
+};
+
+const getProductsFromAlgolia = async (req, res) => {
+  try {
+    const client = algoliasearch(
+      process.env.ALGOLIA_APP_ID,
+      process.env.ALGOLIA_API_KEY
+    );
+    const response = await client.searchSingleIndex({ indexName: "products" });
+    if (response.hits.length) {
+      res.json({
+        status: "success",
+        data: { Products: response.hits, ProductsCount: response.nbHits },
       });
     } else {
       res.status(404).json({
@@ -254,4 +292,5 @@ module.exports = {
   updateProductById,
   insertReview,
   getProductsCategories,
+  getProductsFromAlgolia,
 };

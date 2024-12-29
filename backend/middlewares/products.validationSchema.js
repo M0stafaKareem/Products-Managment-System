@@ -23,7 +23,7 @@ const addNewProductValidation = [
     .withMessage("Product category is required")
     .isLength({ min: 5 })
     .withMessage("Product category min length is 5 chars "),
-  body("image").isURL().withMessage("Product image must be a valid URL"),
+  // body("image").isURL().withMessage("Product image must be a valid URL"),
 ];
 
 const updateProductValidation = [
